@@ -22,6 +22,7 @@
   "keywords": [],
   "author": "Your name here",
   "devDependencies": {
+    "antd": "~2.10.4",
     "babel-core": "^6.0.0",
     "babel-eslint": "^6.0.0",
     "babel-loader": "^6.0.0",
@@ -61,8 +62,10 @@
     "webpack-dev-server": "^1.12.0"
   },
   "dependencies": {
+    "antd": "^2.10.4",
     "core-js": "^2.0.0",
     "jointjs": "^2.0.1",
+    "jsplumb": "^2.6.9",
     "normalize.css": "^4.0.0",
     "react": "^15.0.0",
     "react-dom": "^15.0.0"
