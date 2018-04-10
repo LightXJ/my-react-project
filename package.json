@@ -64,11 +64,17 @@
   "dependencies": {
     "antd": "^2.10.4",
     "core-js": "^2.0.0",
+    "history": "^4.7.2",
     "jointjs": "^2.0.1",
     "jsplumb": "^2.6.9",
+    "less-loader": "^4.1.0",
     "normalize.css": "^4.0.0",
     "react": "^15.0.0",
     "react-dom": "^15.0.0",
+<<<<<<< HEAD
     "uuid": "^3.2.1"
+=======
+    "react-router-dom": "^4.2.2"
+>>>>>>> 240895300ffd2f5bd29964f04162717f07770287
   }
 }
