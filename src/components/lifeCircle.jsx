@@ -3,43 +3,43 @@ import React from 'react';
 class LifeCycle extends React.Component {
   constructor(props) {
       super(props);
-      console.log("子组件 constructor");
-      this.state = {str: "hello"};
+      console.log('子组件 constructor');
+      this.state = {str: 'hello'};
   }
 
   componentWillMount() {
-      console.log("子组件 componentWillMount");
+      console.log('子组件 componentWillMount');
   }
 
   componentDidMount() {
-      console.log("子组件 componentDidMount");
+      console.log('子组件 componentDidMount');
   }
 
-  componentWillReceiveProps(nextProps) {
-      console.log("子组件 componentWillReceiveProps");
+  componentWillReceiveProps() {
+      console.log('子组件 componentWillReceiveProps');
   }
 
   shouldComponentUpdate() {
-      console.log("子组件 shouldComponentUpdate");
+      console.log('子组件 shouldComponentUpdate');
       return true;        // 记得要返回true
   }
 
   componentWillUpdate() {
-      console.log("子组件 componentWillUpdate");
+      console.log('子组件 componentWillUpdate');
   }
 
   componentDidUpdate() {
-      console.log("子组件 componentDidUpdate");
+      console.log('子组件 componentDidUpdate');
   }
 
   componentWillUnmount() {
-      console.log("子组件 componentWillUnmount");
+      console.log('子组件 componentWillUnmount');
   }
 
   setTheState() {
-      let s = "hello";
+      let s = 'hello';
       if (this.state.str === s) {
-          s = "HELLO";
+          s = 'HELLO';
       }
       this.setState({
           str: s
@@ -51,12 +51,12 @@ class LifeCycle extends React.Component {
   }
 
   render() {
-      console.log("子组件 render");
+      console.log('子组件 render');
       return(
           <div>
-              <span>{"Props:"}<h2>{parseInt(this.props.num)}</h2></span>
+              <span>{'Props:'}<h2>{parseInt(this.props.num)}</h2></span>
               <br />
-              <span>{"State:"}<h2>{this.state.str}</h2></span>
+              <span>{'State:'}<h2>{this.state.str}</h2></span>
           </div>
       );
   }
@@ -73,32 +73,32 @@ export default class Container  extends React.Component {
 
 
   componentWillMount() {
-      console.log("父组件 componentWillMount");
+      console.log('父组件 componentWillMount');
   }
 
   componentDidMount() {
-      console.log("父组件 componentDidMount");
+      console.log('父组件 componentDidMount');
   }
 
   componentWillReceiveProps(nextProps) {
-      console.log("父组件 componentWillReceiveProps");
+      console.log('父组件 componentWillReceiveProps');
   }
 
   shouldComponentUpdate() {
-      console.log("父组件 shouldComponentUpdate");
+      console.log('父组件 shouldComponentUpdate');
       return true;        // 记得要返回true
   }
 
   componentWillUpdate() {
-      console.log("父组件 componentWillUpdate");
+      console.log('父组件 componentWillUpdate');
   }
 
   componentDidUpdate() {
-      console.log("父组件 componentDidUpdate");
+      console.log('父组件 componentDidUpdate');
   }
 
   componentWillUnmount() {
-      console.log("父组件 componentWillUnmount");
+      console.log('父组件 componentWillUnmount');
   }
 
 
