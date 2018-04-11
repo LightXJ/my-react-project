@@ -34,7 +34,7 @@ export default class RightArea extends React.Component {
     datas: null,
     dialogVisible: false,
     dialogTitle: '',
-    dialogText: '',
+    labelText: '',
     nodes: [],
     edges: [],
     info: null,
@@ -42,9 +42,7 @@ export default class RightArea extends React.Component {
       ConnectionOverlays: [
       ['Arrow', { location: 1, id: 'arrow', width: 11, length: 11 }],
       ['Label', { location: 0.3, id: 'label', cssClass: 'jsp-label', events: {
-        dblclick: () => {
-          this.editLabelText();
-        }
+        dblclick: info=>this.editLabelText(info)
       } }]
       ]
     })
@@ -58,7 +56,7 @@ export default class RightArea extends React.Component {
 
   }
   hideModal = () => {
-    this.setState({modalVisible:false});
+    this.setState({dialogVisible:false});
   }
 
   init = () => {
@@ -68,7 +66,7 @@ export default class RightArea extends React.Component {
   }
 
   fetchData () {
-    var jsonString = '{"nodes":[{"className":"circle","id":"node-0","text":"过程","style":{"left":"145px","top":"89px"}},{"className":"rect","id":"node-1","text":"结束","style":{"left":"265px","top":"429px"}}],"edges":[{"source":"node-0","target":"node-1","anchor":"AutoDefault","labelText":"yes"}]}';
+    var jsonString = '{"nodes":[{"className":"square","id":"64d442f0-3d3a-11e8-bf11-4737b922d1c3","text":"开始","style":{"left":"168.515625px","top":"25px"}},{"className":"circle","id":"6575b310-3d3a-11e8-bf11-4737b922d1c3","text":"过程","style":{"left":"157.515625px","top":"175px"}},{"className":"rect","id":"660cea00-3d3a-11e8-bf11-4737b922d1c3","text":"结束","style":{"left":"188.515625px","top":"350px"}}],"edges":[{"source":"64d442f0-3d3a-11e8-bf11-4737b922d1c3","target":"6575b310-3d3a-11e8-bf11-4737b922d1c3","labelText":""},{"source":"6575b310-3d3a-11e8-bf11-4737b922d1c3","target":"660cea00-3d3a-11e8-bf11-4737b922d1c3","labelText":""}]}';
     var nodeData = JSON.parse( jsonString );
     this.setState({datas:nodeData, nodes: nodeData.nodes, edges: nodeData.edges},() => {
       this.initNodes(this.refs.nodes);
@@ -112,8 +110,8 @@ export default class RightArea extends React.Component {
       id: uuidv1(),
       text: dragEl.innerText,
       style: {
-        left: this.props.pos[0] - rect.left - dragEl.clientLeft + 'px',
-        top: this.props.pos[1] - rect.top - dragEl.clientTop + 'px'
+        left: this.props.pos[0] - rect.left - dropEl.clientLeft + 'px',
+        top: this.props.pos[1] - rect.top - dropEl.clientTop + 'px'
         // lineHeight: dragEl.clientHeight + 'px'
       }
     }
@@ -128,8 +126,8 @@ export default class RightArea extends React.Component {
     edges.map(edge => this.state.rjsp.connect(edge, Common).getOverlay('label').setLabel(edge.labelText))
   }
 
-  editLabelText = (info) => {
-    console.log('label:' + info);
+  editLabelText = (info) => {;
+    this.setState({dialogVisible:true, info: info.component, labelText:info.labelText});
   }
 
   activeElem = () => {
@@ -173,6 +171,43 @@ export default class RightArea extends React.Component {
     this.setState({nodes:[]});
   }
 
+  changeLabel = (e) => {
+    let value = e.target.value;
+    this.setState({labelText:value});
+  }
+
+  saveLabel = () => {
+    this.state.info.getOverlay('label').setLabel(this.state.labelText);
+    this.hideModal();
+  }
+
+  saveDatas = () => {
+    let datas = {
+      nodes: this.state.nodes.map((node, index) => {
+        node.style = this.getStyle(this.refs.nodes[index])
+        return node
+      }),
+      edges: this.state.rjsp.getAllConnections().map(connection => {
+        return {
+          source: connection.sourceId,
+          target: connection.targetId,
+          labelText: connection.getOverlay('label').labelText
+        }
+      })
+    }
+    this.setState({datas});
+    this.props.saveDatas(datas);
+  }
+
+  getStyle (node) {
+    let container = this.refs.right.getBoundingClientRect()
+    let rect = node.getBoundingClientRect()
+    return {
+      left: rect.left - container.left - this.refs.right.clientLeft + 'px',
+      top: rect.top - container.top + - this.refs.right.clientTop + 'px'
+    }
+  }
+
   render(){
     return (
       <div className="right-area" ref="right">
@@ -181,15 +216,16 @@ export default class RightArea extends React.Component {
           <Button type="primary" onClick={this.clearAll}>清除</Button>
         </div>
         <Modal
+          title="编辑连接的文本"
           visible={this.state.dialogVisible}
           onCancel={this.hideModal}
           footer={[
             <Button key="back" onClick={this.hideModal}>取消</Button>,
-            <Button key="submit" type="primary" onClick={this.handleOk}>
+            <Button key="submit" type="primary" onClick={this.saveLabel}>
               确定
             </Button>
           ]}>
-          <Input placeholder="Basic usage" />
+          <Input placeholder="Basic usage" value={this.state.labelText} onChange={this.changeLabel}/>
         </Modal>
         {this.state.nodes.map((node,index)=>{
          return(
