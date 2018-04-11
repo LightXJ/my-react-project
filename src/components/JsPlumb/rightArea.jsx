@@ -66,7 +66,7 @@ export default class RightArea extends React.Component {
   }
 
   fetchData () {
-    var jsonString = '{"nodes":[{"className":"square","id":"64d442f0-3d3a-11e8-bf11-4737b922d1c3","text":"开始","style":{"left":"168.515625px","top":"25px"}},{"className":"circle","id":"6575b310-3d3a-11e8-bf11-4737b922d1c3","text":"过程","style":{"left":"157.515625px","top":"175px"}},{"className":"rect","id":"660cea00-3d3a-11e8-bf11-4737b922d1c3","text":"结束","style":{"left":"188.515625px","top":"350px"}}],"edges":[{"source":"64d442f0-3d3a-11e8-bf11-4737b922d1c3","target":"6575b310-3d3a-11e8-bf11-4737b922d1c3","labelText":""},{"source":"6575b310-3d3a-11e8-bf11-4737b922d1c3","target":"660cea00-3d3a-11e8-bf11-4737b922d1c3","labelText":""}]}';
+    var jsonString = '{"nodes":[{"className":"square","id":"64d442f0-3d3a-11e8-bf11-4737b922d1c3","text":"开始","style":{"left":"172px","top":"29px"}},{"className":"circle","id":"6575b310-3d3a-11e8-bf11-4737b922d1c3","text":"过程","style":{"left":"157.515625px","top":"175px"}},{"className":"rect","id":"660cea00-3d3a-11e8-bf11-4737b922d1c3","text":"结束","style":{"left":"188.515625px","top":"350px"}}],"edges":[{"source":"64d442f0-3d3a-11e8-bf11-4737b922d1c3","target":"6575b310-3d3a-11e8-bf11-4737b922d1c3","labelText":"sdd"},{"source":"6575b310-3d3a-11e8-bf11-4737b922d1c3","target":"660cea00-3d3a-11e8-bf11-4737b922d1c3","labelText":"sdssd"}]}';
     var nodeData = JSON.parse( jsonString );
     this.setState({datas:nodeData, nodes: nodeData.nodes, edges: nodeData.edges},() => {
       this.initNodes(this.refs.nodes);
