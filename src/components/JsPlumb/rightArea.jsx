@@ -38,19 +38,12 @@ export default class RightArea extends React.Component {
     nodes: [],
     edges: [],
     info: null,
-    rjsp: jsPlumb.getInstance({
-      ConnectionOverlays: [
-      ['Arrow', { location: 1, id: 'arrow', width: 11, length: 11 }],
-      ['Label', { location: 0.3, id: 'label', cssClass: 'jsp-label', events: {
-        dblclick: info=>this.editLabelText(info)
-      } }]
-      ]
-    })
   }
 
   componentDidMount() {
     this.init();
     this.refs.nodes = [];
+    
   }
   componentWillMount = () => {
 
@@ -60,8 +53,16 @@ export default class RightArea extends React.Component {
   }
 
   init = () => {
+    this.rjsp = jsPlumb.getInstance({
+      ConnectionOverlays: [
+      ['Arrow', { location: 1, id: 'arrow', width: 11, length: 11 }],
+      ['Label', { location: 0.3, id: 'label', cssClass: 'jsp-label', events: {
+        dblclick: info=>this.editLabelText(info)
+      } }]
+      ]
+    })
     this.props.jsp.droppable(this.refs.right, { drop: this.jspDrop })
-    this.state.rjsp.bind('beforeDrop', this.jspBeforeDrop)
+    this.rjsp.bind('beforeDrop', this.jspBeforeDrop)
     this.fetchData()
   }
 
@@ -77,7 +78,7 @@ export default class RightArea extends React.Component {
 
   jspBeforeDrop = (info) => {
     info.targetId = info.dropEndpoint.elementId
-    let connections = this.state.rjsp.getConnections({ source: info.sourceId, target: info.targetId })
+    let connections = this.rjsp.getConnections({ source: info.sourceId, target: info.targetId })
     if (info.targetId === info.sourceId) {
       Modal.warning({
         title: '不可以自己连接自己'
@@ -118,12 +119,12 @@ export default class RightArea extends React.Component {
   }
 
   initNodes = (node) => {
-    this.state.rjsp.draggable(node, {constrain:true});
-    DynamicAnchors.map(anchor => this.state.rjsp.addEndpoint(node, anEndpoint, { anchor }));
+    this.rjsp.draggable(node, {constrain:true});
+    DynamicAnchors.map(anchor => this.rjsp.addEndpoint(node, anEndpoint, { anchor }));
   }
 
   initEdges = (edges) => {
-    edges.map(edge => this.state.rjsp.connect(edge, Common).getOverlay('label').setLabel(edge.labelText))
+    edges.map(edge => this.rjsp.connect(edge, Common).getOverlay('label').setLabel(edge.labelText))
   }
 
   editLabelText = (info) => {;
@@ -136,8 +137,8 @@ export default class RightArea extends React.Component {
 
   deleteNode = (event,node) => {
     event.stopPropagation();
-    this.state.rjsp.deleteConnectionsForElement(node.id);
-    let edges = this.state.rjsp.getAllConnections().map(connection => {
+    this.rjsp.deleteConnectionsForElement(node.id);
+    let edges = this.rjsp.getAllConnections().map(connection => {
       return {
         source: connection.sourceId,
         target: connection.targetId,
@@ -152,7 +153,7 @@ export default class RightArea extends React.Component {
   }
   
   addEdge = (info) => {
-    this.state.rjsp.connect({ source: info.sourceId, target: info.targetId }, Common);
+    this.rjsp.connect({ source: info.sourceId, target: info.targetId }, Common);
   }
 
   reload = () => {
@@ -161,13 +162,13 @@ export default class RightArea extends React.Component {
       nodes: this.state.datas.nodes,
       edges: this.state.datas.edges
     })
-    this.state.rjsp.bind('beforeDrop', this.jspBeforeDrop);
+    this.rjsp.bind('beforeDrop', this.jspBeforeDrop);
     this.initNodes(this.refs.nodes.filter(refNode=>refNode));  // 删除一个节点后，它对应的ref为null，要去掉
     this.initEdges(this.state.edges);
   }
 
   clearAll = () => {
-    this.state.rjsp.reset();
+    this.rjsp.reset();
     this.setState({nodes:[]});
   }
 
@@ -187,7 +188,7 @@ export default class RightArea extends React.Component {
         node.style = this.getStyle(this.refs.nodes[index])
         return node
       }),
-      edges: this.state.rjsp.getAllConnections().map(connection => {
+      edges: this.rjsp.getAllConnections().map(connection => {
         return {
           source: connection.sourceId,
           target: connection.targetId,

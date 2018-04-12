@@ -126,6 +126,7 @@ export default class Container  extends React.Component {
   }
 
   render() {
+      console.log('父组件render');
       return (
           <div>
               <a href="javascript:;" className="weui_btn weui_btn_primary" onClick={this.propsChange.bind(this)}>propsChange</a>
