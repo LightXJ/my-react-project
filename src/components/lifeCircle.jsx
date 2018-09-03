@@ -1,6 +1,9 @@
 import React from 'react';
 
 class LifeCycle extends React.Component {
+    state = {
+        proid:''
+    }
   constructor(props) {
       super(props);
       console.log('子组件 constructor');
@@ -13,6 +16,10 @@ class LifeCycle extends React.Component {
 
   componentDidMount() {
       console.log('子组件 componentDidMount');
+      setTimeout(()=>{
+          console.log('设置')
+          this.setState({proid:'22'});
+      },5000)
   }
 
   componentWillReceiveProps() {

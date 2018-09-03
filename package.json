@@ -64,14 +64,18 @@
   "dependencies": {
     "antd": "^2.10.4",
     "core-js": "^2.0.0",
+    "coverflow-reactjs": "^1.0.1",
+    "echarts": "^4.1.0",
+    "echarts-wordcloud": "^1.1.3",
     "history": "^4.7.2",
     "jointjs": "^2.0.1",
     "jsplumb": "^2.6.9",
     "less-loader": "^4.1.0",
     "normalize.css": "^4.0.0",
+    "raphael": "^2.2.7",
     "react": "^15.0.0",
     "react-dom": "^15.0.0",
-    "uuid": "^3.2.1",
-    "react-router-dom": "^4.2.2"
+    "react-router-dom": "^4.2.2",
+    "uuid": "^3.2.1"
   }
 }
