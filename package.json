@@ -67,6 +67,7 @@
     "history": "^4.7.2",
     "jointjs": "^2.0.1",
     "jsplumb": "^2.6.9",
+    "less": "^3.0.1",
     "less-loader": "^4.1.0",
     "normalize.css": "^4.0.0",
     "react": "^15.0.0",
