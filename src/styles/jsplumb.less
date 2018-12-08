@@ -4,22 +4,46 @@ html, body, #app{
     box-sizing: border-box;
     font-size: 0;
 }
+.square {
+  position: absolute;
+  z-index: 1000;
+  width: 100px;
+  height: 100px;
+  border: 2px solid #333;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 14px;
+  text-align: center;
+}
+
+.circle {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border: 2px solid #333;
+  border-radius: 50%;
+  box-sizing: border-box;
+  font-size: 14px;
+  text-align: center;
+}
+
+.rect {
+  position: absolute;
+  top: 25px;
+  width: 100px;
+  height: 50px;
+  border: 2px solid #333;
+  box-sizing: border-box;
+  font-size: 14px;
+  text-align: center;
+}
 .jsplumb-page {
   position: relative;
-  .left-area, .right-area {
-    position: relative;
-    height: 100%;
-    box-sizing: border-box;
-    font-size: 0;
-  }
   .left-area, .right-area {
     position: relative;
     height: 500px;
     box-sizing: border-box;
     font-size: 0;
-  }
-  
-  .left-area, .right-area {
     display: inline-block;
     border: 1px solid #333;
   }
@@ -32,34 +56,7 @@ html, body, #app{
     width: 75%;
     margin-left: 5%;
   }
-  
-  .square {
-    position: absolute;
-    z-index: 1000;
-    width: 100px;
-    height: 100px;
-    border: 1px solid #333;
-    border-radius: 5px;
-    box-sizing: border-box;
-  }
-  
-  .circle {
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    border: 1px solid #333;
-    border-radius: 50%;
-    box-sizing: border-box;
-  }
-  
-  .rect {
-    position: absolute;
-    top: 25px;
-    width: 100px;
-    height: 50px;
-    border: 1px solid #333;
-    box-sizing: border-box;
-  }
+
   
   
   .jsp-label {
@@ -104,11 +101,25 @@ html, body, #app{
 
   .node {
     padding: 0 10px;
-    overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     font-size: 14px;
     text-align: center;
     cursor: pointer;
+    .delete-btn {
+      color: red;
+      position: absolute;
+      right: -10px;
+      top: -10px;
+      font-size: 14px;
+      border: 1px solid red;
+    }
+  }
+  .bottom-area {
+    width: 100%;
+    border: 1px solid #000;
+    margin-top: 10px;
+    font-size: 14px;
+    padding: 10px;
   }
 }

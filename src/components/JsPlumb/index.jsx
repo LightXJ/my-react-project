@@ -2,31 +2,34 @@ import React from 'react';
 import {jsPlumb} from 'jsplumb';
 import LeftArea from './leftArea';
 import RightArea from './rightArea';
+import BottomArea from './bottomArea';
+
 
 export default class JsPlumb extends React.Component {
   state = {
-    jsp: '',
     pos: [0,0],
-    initialized: false
+    datas: {}
   }
-  componentDidMount = () => {
-    jsPlumb.ready(() => {
-      this.setState({jsp: jsPlumb.getInstance(), initialized:true});
-    })
-  }
+
+  jsp=jsPlumb.getInstance();
+
   updatePositon = (pos) => {
     this.setState({pos});
   }
+
+  saveDatas = (datas) => {
+    this.setState({datas});
+  }
+  
   render() {
-    const { jsp, pos, initialized } = this.state;
+    const { pos, datas } = this.state;
     return (
       <div className="jsplumb-page">
-       {initialized && (
-         <div>
-          <LeftArea jsp={jsp} updatepos={this.updatePositon} />
-          <RightArea jsp={jsp} pos={pos}/>
-         </div>
-       )}
+        <div>
+          <LeftArea jsp={this.jsp} updatepos={this.updatePositon} />
+          <RightArea jsp={this.jsp} pos={pos} saveDatas={this.saveDatas}/>
+        </div>
+        <BottomArea  datas={datas}/>
       </div>
     );
   }

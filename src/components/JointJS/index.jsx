@@ -3,47 +3,48 @@ import joint from 'jointjs';
 
 class AppComponent extends React.Component {
   componentDidMount() {
-    let graph = new joint.dia.Graph;
-
+    console.log(joint);
+    let graph = new joint.dia.Graph
     let paper = new joint.dia.Paper({
         el: this.myholder,
         width: 600,
-        height: 200,
+        height: 400,
+        gridSize: 1,
         model: graph
     });
 
-    joint.shapes.basic.Rect = joint.shapes.basic.Generic.extend({   //创建自定义矩形
-      markup: '<image/>',
-
-      defaults: joint.util.deepSupplement({
-          type: 'basic.Image',
-          attrs: {
-              'image': { src: '/images/yeoman.png', 'xlink:href': '/images/yeoman.png', width: 96, height: 96 },
-          }
-      }, joint.shapes.basic.Generic.prototype.defaults)
-  });
-
-    var myReact=new joint.shapes.basic.Rect({  //绘制元素
-      position:{x: 100 , y: 70},
-      size: {width: 100 ,height: 30},
-      attrs: {text: {text: 'QLY' } }
-    });
-
     let rect = new joint.shapes.basic.Rect({
-        position: { x: 100, y: 30 },
-        size: { width: 100, height: 30 },
-        attrs: { rect: { fill: 'blue' }, text: { text: 'my box', fill: 'white' } }
+        position: { x: 50, y: 70 },
+        size: { width: 100, height: 40 }
     });
 
     let rect2 = rect.clone();
     rect2.translate(300);
 
-    let link = new joint.dia.Link({
-        source: { id: rect.id },
-        target: { id: rect2.id }
+    var link = new joint.dia.Link({
+      source: {
+        id: rect.id
+      },
+      target: {
+        id: rect2.id
+      }
     });
 
-    graph.addCells([rect, rect2, link, myReact]);
+    link.attr({
+      '.connection': { stroke: 'blue' },
+      '.marker-source': { fill: 'red', d: 'M 10 0 L 0 5 L 10 10 z' },
+      '.marker-target': { fill: 'yellow', d: 'M 10 0 L 0 5 L 10 10 z' }
+    });
+    link.set('smooth', true)
+
+    graph.addCell([rect, rect2, link]);
+
+    graph.on('all', function(eventName, cell) {
+      // console.log(arguments,"------------");
+    });
+    rect.on('change:position', function(element) {
+      // console.log(element.id, ':', element.get('position'),);
+    });
     
   }
   render() {
