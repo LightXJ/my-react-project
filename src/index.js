@@ -9,7 +9,11 @@ import { Router, Route, Redirect } from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory'
 import EchartsWord from './components/echartsWord';
 import ChinaMap from './components/ChinaMap';
-import './styles/style.less';
+import EnhanceComponent1 from './components/enhanceComponent1';
+import EnhanceComponent2 from './components/enhanceComponent2';
+import EchartsChinaMap from './components/echartsChinaMap';
+
+// import './styles/style.less';
 
 const history = createBrowserHistory()
 
@@ -23,6 +27,9 @@ ReactDOM.render(
       <Route path="/url" component={UrlDemo}/>
       <Route path="/words" component={EchartsWord}/>
       <Route path="/chinaMap" component={ChinaMap}/>
+      <Route path="/enhanceComponent1" component={EnhanceComponent1}/>
+      <Route path="/enhanceComponent2" component={EnhanceComponent2}/>
+      <Route path="/echartsChinaMap" component={EchartsChinaMap}/>
     </div>
   </Router>,
 document.getElementById('app'));
