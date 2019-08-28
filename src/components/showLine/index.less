@@ -1,0 +1,134 @@
+.showline-page {
+  .line-name-wrap, .line-content-wrap {
+    display: inline-block;
+    line-height: 50px;
+  }
+  .line-name-wrap {
+    width: 80px;
+    vertical-align: top;
+    margin-left: 20px;
+  }
+  .line-content-wrap {
+    width: 400px;
+    display: inline-block;
+    overflow-x: hidden;
+    vertical-align: top;
+  }
+  .line-item-wrap {
+    height: 50px;
+    white-space: nowrap;
+    &.active {
+      .cell::before {
+        background: blue;
+      }
+      .cell::after {
+        background: blue;
+      }
+    } 
+  }
+  .name-title {
+    color: #c3c3c3;
+  }
+  .cell {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 50px;
+    height: 48px;
+    vertical-align: middle;
+    border-right: 1px dashed #ccc;
+    position: relative;
+    &:first-child {
+      width: 20px;
+    }
+    &:last-child {
+      width: 20px;
+      border-right: none;
+    }
+  }
+  .show-line {
+    &::before {
+      position: absolute;
+      display: block;
+      content: '';
+      width: 14px;
+      height: 14px;
+      border-radius: 14px;
+      background: lightblue;
+      left: -7px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    &::after {
+      position: absolute;
+      content: '';
+      width: 100%;
+      height: 14px;
+      background: lightblue;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+  .show-dot {
+    &::before {
+      position: absolute;
+      content: '';
+      width: 14px;
+      height: 14px;
+      border-radius: 14px;
+      background: lightblue;
+      left: -7px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  .epsode-wrap {
+    line-height: 50px;
+    white-space: nowrap;
+    .epsode-item {
+      display: inline-block;
+      width: 50px;
+      box-sizing: border-box;
+      font-size: 14px;
+      color: #bbb;
+      position: relative;
+      left: -20px;
+      &:first-child {
+        width: 20px;
+      }
+      &:last-child {
+        width: 20px;
+        border-right: none;
+      }
+    }
+  }
+
+  .tool-bar-wrap {
+    width: 400px;
+    height: 20px;
+    box-sizing: border-box;
+    background: #eee;
+    border: 1px solid #ccc;
+    position: relative;
+    top: 10px;
+    left: 90px;
+    .bar {
+      position: absolute;
+      left: 0;
+      top: 0;
+      box-sizing: border-box;
+      width: 50px;
+      height: 100%;
+      border: 1px solid #aaa;
+      cursor: pointer;
+    }
+  }
+}
+
+#show-item-tooltip {
+  position: absolute;
+  width: 150px;
+  background-color: rgba(255,255,255,.95);
+  border: 1px solid #8B94A6;
+  border-radius: 4px;
+}

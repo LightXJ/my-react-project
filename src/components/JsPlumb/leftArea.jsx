@@ -23,13 +23,16 @@ export default class LeftArea extends React.Component {
     return (
       <div className="left-area">
         <div className="item">
-          <div className="square center" ref="square">开始</div>
+          <div className="square center" ref="square" style={{fontSize:12}}>sdd</div>
         </div>
         <div className="item">
-          <div className="circle center" ref="circle">过程</div>
+          <div className="circle center" ref="circle"></div>
         </div>
         <div className="item">
-          <div className="rect center" ref="rect">结束</div>
+          <div className="rect center" ref="rect"></div>
+        </div>
+        <div className="item">
+          <div className="diamond center" ref="diamond"></div>
         </div>
       </div>
     );

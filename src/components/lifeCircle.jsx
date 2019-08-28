@@ -43,6 +43,9 @@ class LifeCycle extends React.Component {
       console.log('子组件 componentDidUpdate');
   }
 
+  componentDidUpdate(){
+      console.log('子组件 componentDidUpdate');
+  }
 //   componentWillUnmount() {
 //       console.log('子组件 componentWillUnmount');
 //   }
@@ -148,7 +151,7 @@ export default class Container  extends React.Component {
               {/* <a href="javascript:;" className="weui_btn weui_btn_primary" onClick={this.forceLifeCycleUpdate.bind(this)}>forceUpdate</a> */}
               {/* <a href="javascript:;" className="weui_btn weui_btn_primary" onClick={this.unmountLifeCycle.bind(this)}>unmount</a> */}
               {/* <a href="javascript:;" className="weui_btn weui_btn_primary" onClick={this.parentForceUpdate.bind(this)}>parentForceUpdateWithoutChange</a> */}
-              <LifeCycle ref="rLifeCycle" num={this.state.num}></LifeCycle>
+              <LifeCycle ref="rLifeCycle"></LifeCycle>
           </div>
       );
   }

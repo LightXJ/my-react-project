@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Radio } from 'antd';
 
 // 属性代理
 class WrappedComponent extends Component {
@@ -39,6 +40,16 @@ const EnhanceComponent = ehance( WrappedComponent );
 
 export default class MyEnhanceComponent extends Component {
   render(){
-    return <EnhanceComponent aProps="a" wrapRef={node=>this.node=node} />
+    return (
+      <div>
+        <EnhanceComponent aProps="a" wrapRef={node=>this.node=node} />
+        <Radio.Group onChange={this.onChange} value={1}>
+          <Radio value={1}>A</Radio>
+          <Radio value={2}>B</Radio>
+          <Radio value={3}>C</Radio>
+          <Radio value={4}>D</Radio>
+        </Radio.Group>
+      </div>
+    )
   }
 }

@@ -12,6 +12,7 @@ import ChinaMap from './components/ChinaMap';
 import EnhanceComponent1 from './components/enhanceComponent1';
 import EnhanceComponent2 from './components/enhanceComponent2';
 import EchartsChinaMap from './components/echartsChinaMap';
+import ShowLine from './components/showLine';
 
 // import './styles/style.less';
 
@@ -30,6 +31,7 @@ ReactDOM.render(
       <Route path="/enhanceComponent1" component={EnhanceComponent1}/>
       <Route path="/enhanceComponent2" component={EnhanceComponent2}/>
       <Route path="/echartsChinaMap" component={EchartsChinaMap}/>
+      <Route path="/showLine" component={ShowLine}/>
     </div>
   </Router>,
 document.getElementById('app'));

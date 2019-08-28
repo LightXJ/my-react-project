@@ -259,6 +259,4 @@ const getProvinceMapOption = (regionData, index = 0) => {
 };
 
 export default getProvinceMapOption;
-console.log(JSON.stringify(regionChinaJson));
-console.log(JSON.stringify(mergeRegionChinaJson));
 export { regionChinaJson, getProvinceMapOption };
