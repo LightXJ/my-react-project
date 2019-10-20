@@ -3,6 +3,7 @@ import echarts from 'echarts';
 import getProvinceMapOption from '../echartsChinaMap/provinceMapOptions';
 import html2canvas from 'html2canvas';
 
+
 export default class IqiyiReport extends React.Component {
 
    // canvas-->image
