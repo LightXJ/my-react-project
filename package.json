@@ -71,7 +71,7 @@
     "eslint": "^6.5.1",
     "history": "^4.7.2",
     "html2canvas": "^1.0.0-rc.5",
-    "jointjs": "^2.0.1",
+    "jointjs": "^3.3.0",
     "jsplumb": "^2.6.9",
     "less": "^3.0.1",
     "less-loader": "^4.1.0",
